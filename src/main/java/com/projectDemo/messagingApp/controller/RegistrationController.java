@@ -1,9 +1,9 @@
 package com.projectDemo.messagingApp.controller;
 import javax.mail.MessagingException;
 
-import com.projectDemo.messagingApp.exceptionHandler.InvalidFileException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +29,10 @@ public class RegistrationController {
 
 
     @RequestMapping("/send-mail")
-    public String send() {
+    public ResponseEntity<String> send() {
 
 
-         user.setEmailAddress(username);  //Receiver's email address
+         user.setEmailAddress(username);
 
 
         try {
@@ -40,13 +40,13 @@ public class RegistrationController {
         } catch (MailException mailException) {
             System.out.println(mailException);
         }
-        return "Congratulations! Your mail has been send to the user.";
+        return new ResponseEntity<String>("E-Mail sent successfully", HttpStatus.ACCEPTED);
     }
 
     @RequestMapping("/send-mail-attachment")
-    public String sendWithAttachment() throws MessagingException {
+    public ResponseEntity<String> sendWithAttachment() throws MessagingException {
 
-        user.setEmailAddress(username);  //Receiver's email address
+        user.setEmailAddress(username);
 
 
         try {
@@ -56,7 +56,7 @@ public class RegistrationController {
             System.out.println(mailException);
         }
 
-        return "Congratulations! Your mail has been send to the user.";
+        return new ResponseEntity<String>("E-Mail with attachment sent successfully ", HttpStatus.ACCEPTED);
 
 
     }

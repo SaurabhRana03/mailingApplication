@@ -3,7 +3,7 @@ package com.projectDemo.messagingApp.service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import com.projectDemo.messagingApp.exceptionHandler.InvalidFileException;
+import com.projectDemo.messagingApp.exception.InvalidFileException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
@@ -51,8 +51,8 @@ public class MailService {
         helper.addAttachment(classPathResource.getFilename(), classPathResource);
 
         if(classPathResource.exists()) {
-            if ((classPathResource.getFile().length()<10)) {
-                throw new InvalidFileException("file size is too small");
+            if ((classPathResource.getFile().length()>100)) {
+                throw new InvalidFileException("file size is too large");
             }
         }
 

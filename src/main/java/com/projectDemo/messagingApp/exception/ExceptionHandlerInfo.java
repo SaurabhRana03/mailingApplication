@@ -1,4 +1,4 @@
-package com.projectDemo.messagingApp.exceptionHandler;
+package com.projectDemo.messagingApp.exception;
 
 
 import org.springframework.http.HttpHeaders;
@@ -16,9 +16,6 @@ public class ExceptionHandlerInfo {
     public ResponseEntity<Object> handleException(InvalidFileException exception) {
 
        ExceptionInfo exInfo = new ExceptionInfo(exception.getMessage(), HttpStatus.NOT_ACCEPTABLE, ZonedDateTime.now());
-
-      /*  String errorDescription = exception.getLocalizedMessage();
-        if (errorDescription == null) errorDescription = exception.toString();*/
 
         return new ResponseEntity<>(exInfo, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
 

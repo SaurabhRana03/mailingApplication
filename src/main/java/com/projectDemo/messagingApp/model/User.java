@@ -1,19 +1,13 @@
 package com.projectDemo.messagingApp.model;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 @Component
+@Getter
+@Setter
 public class User {
-
     private String emailAddress;
 
- public String getEmailAddress() {
-        return emailAddress;
-    }
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
 }
