@@ -1,6 +1,10 @@
 package com.projectDemo.messagingApp.controller;
-import javax.mail.MessagingException;
 
+import com.projectDemo.messagingApp.EmailApplication;
+import com.projectDemo.messagingApp.model.User;
+import com.projectDemo.messagingApp.service.MailService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -9,9 +13,7 @@ import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projectDemo.messagingApp.model.User;
-import com.projectDemo.messagingApp.service.MailService;
-
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 
@@ -31,6 +33,9 @@ public class RegistrationController {
     @RequestMapping("/send-mail")
     public ResponseEntity<String> send() {
 
+        Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+        logger.trace("logging TRACE");
+
 
          user.setEmailAddress(username);
 
@@ -45,6 +50,9 @@ public class RegistrationController {
 
     @RequestMapping("/send-mail-attachment")
     public ResponseEntity<String> sendWithAttachment() throws MessagingException {
+
+        Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+        logger.info("logging info");
 
         user.setEmailAddress(username);
 
