@@ -5,6 +5,7 @@ import com.projectDemo.messagingApp.model.User;
 import com.projectDemo.messagingApp.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.util.Iterator;
 
 
 @RestController
@@ -34,7 +36,7 @@ public class RegistrationController {
     public ResponseEntity<String> send() {
 
         Logger logger = LoggerFactory.getLogger(RegistrationController.class);
-        logger.trace("logging TRACE");
+        logger.info("logging Info : First End-point called");
 
 
          user.setEmailAddress(username);
@@ -43,7 +45,7 @@ public class RegistrationController {
         try {
             notificationService.sendEmail(user);
         } catch (MailException mailException) {
-            System.out.println(mailException);
+            logger.error("Error occurred",mailException);
         }
         return new ResponseEntity<String>("E-Mail sent successfully", HttpStatus.ACCEPTED);
     }
@@ -52,7 +54,7 @@ public class RegistrationController {
     public ResponseEntity<String> sendWithAttachment() throws MessagingException {
 
         Logger logger = LoggerFactory.getLogger(RegistrationController.class);
-        logger.info("logging info");
+        logger.info("logging info:Second End-point called");
 
         user.setEmailAddress(username);
 
@@ -61,7 +63,7 @@ public class RegistrationController {
 
             notificationService.sendEmailWithAttachment(user);
         } catch (MailException | IOException mailException) {
-            System.out.println(mailException);
+            logger.error("Error occurred",mailException);
         }
 
         return new ResponseEntity<String>("E-Mail with attachment sent successfully ", HttpStatus.ACCEPTED);
