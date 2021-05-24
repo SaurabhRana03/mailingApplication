@@ -1,9 +1,9 @@
-package com.projectDemo.messagingApp.service;
+package com.projectDemo.mailingApp.service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import com.projectDemo.messagingApp.exception.InvalidFileException;
+import com.projectDemo.mailingApp.exception.InvalidFileException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -13,7 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import com.projectDemo.messagingApp.model.User;
+import com.projectDemo.mailingApp.model.User;
 
 import java.io.IOException;
 

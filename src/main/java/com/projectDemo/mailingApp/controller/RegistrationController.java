@@ -1,11 +1,10 @@
-package com.projectDemo.messagingApp.controller;
+package com.projectDemo.mailingApp.controller;
 
-import com.projectDemo.messagingApp.EmailApplication;
-import com.projectDemo.messagingApp.model.User;
-import com.projectDemo.messagingApp.service.MailService;
+import com.projectDemo.mailingApp.exception.MailingException;
+import com.projectDemo.mailingApp.model.User;
+import com.projectDemo.mailingApp.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.Iterator;
 
 
 @RestController
@@ -46,6 +44,7 @@ public class RegistrationController {
             notificationService.sendEmail(user);
         } catch (MailException mailException) {
             logger.error("Error occurred",mailException);
+            throw new MailingException("Something Wrong");
         }
         return new ResponseEntity<String>("E-Mail sent successfully", HttpStatus.ACCEPTED);
     }
@@ -64,6 +63,7 @@ public class RegistrationController {
             notificationService.sendEmailWithAttachment(user);
         } catch (MailException | IOException mailException) {
             logger.error("Error occurred",mailException);
+            throw new MailingException("Something went Wrong");
         }
 
         return new ResponseEntity<String>("E-Mail with attachment sent successfully ", HttpStatus.ACCEPTED);

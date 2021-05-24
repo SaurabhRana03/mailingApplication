@@ -1,4 +1,4 @@
-package com.projectDemo.messagingApp.model;
+package com.projectDemo.mailingApp.model;
 
 import lombok.Getter;
 import lombok.Setter;

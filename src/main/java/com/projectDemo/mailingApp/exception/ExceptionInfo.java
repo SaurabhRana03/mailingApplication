@@ -1,4 +1,4 @@
-package com.projectDemo.messagingApp.exception;
+package com.projectDemo.mailingApp.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
